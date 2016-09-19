@@ -1,4 +1,4 @@
-import ModuleCore from './ModuleCore';
+import DriverCore from './DriverCore';
 
 export const INPUT          = 'INPUT';
 export const OUTPUT         = 'OUTPUT';
@@ -13,7 +13,7 @@ export const INTERNAL       = 'INTERNAL';
 export const MSBFIRST       = 'MSBFIRST';
 export const LSBFIRST       = 'LSBFIRST';
 
-export default class Module extends ModuleCore {
+export default class DriverDefault extends DriverCore {
   /**
   * Constructor
   * @param  {string} id
@@ -22,8 +22,8 @@ export default class Module extends ModuleCore {
   * @param  {ServerClient} client
   * @return {void}
   */
-  constructor(id, type, version, client) {
-    super(id, type, version, client);
+  constructor(id, name, type, version, client) {
+    super(id, name, type, version, client);
 
     this._valuesPinMode         = [INPUT, OUTPUT];
     this._valuesDigitalLevel    = [HIGH, LOW];

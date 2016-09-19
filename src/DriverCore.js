@@ -4,16 +4,17 @@ import {EventEmitter} from 'events';
 const MAX_MESSAGE_ID = 255;
 let MESSAGE_ID = 0;
 
-export default class ModuleCore extends EventEmitter {
+export default class DriverCore extends EventEmitter {
   /**
   * Constructor
   * @param  {string} IP
   * @return {void}
   */
-  constructor(id, type, version, client) {
+  constructor(id, name, type, version, client) {
     super();
 
     this._id      = id;
+    this._name    = name;
     this._type    = type;
     this._version = version;
     this._client  = client;
@@ -33,6 +34,10 @@ export default class ModuleCore extends EventEmitter {
 
   get id() {
     return this._id;
+  }
+
+  get name() {
+    return this._name;
   }
 
   get type() {
