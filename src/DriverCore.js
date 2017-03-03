@@ -1,8 +1,4 @@
-import Q from 'q';
 import {EventEmitter} from 'events';
-
-const MAX_MESSAGE_ID = 255;
-let MESSAGE_ID = 0;
 
 export default class DriverCore extends EventEmitter {
   /**
