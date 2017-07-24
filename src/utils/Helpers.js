@@ -3,7 +3,7 @@ export default {
     return setTimeout(fn, delay);
   },
   repeat: function(times, delay, fn, wait) {
-    let counter, id ;
+    let counter, id;
     let repeater = () => {
       fn();
 

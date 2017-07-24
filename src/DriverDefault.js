@@ -35,27 +35,27 @@ export default class DriverDefault extends DriverCore {
   /**
   * Configures the specified pin to behave either as an input or an output.
   * @param  {integer} pin
-  * @param  {[INPUT, OUTPUT]} mode
+  * @param  {INPUT|OUTPUT} mode
   * @return {void}
   */
   pinMode(pin, mode) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
     if (this._valuesPinMode.indexOf(mode) === -1) { throw new Error('Invalid value of param "mode": ' + mode); }
 
-    return this.client.send('pinMode', {pin: pin, mode: mode});
+    return this.client.send('pinMode', { pin: pin, mode: mode });
   }
 
   /**
   * Write a HIGH or a LOW value to a digital pin.
   * @param  {integer} pin
-  * @param  {[HIGH, LOW]} level
+  * @param  {HIGH|LOW} level
   * @return {void}
   */
   digitalWrite(pin, level) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
     if (this._valuesDigitalLevel.indexOf(level) === -1) { throw new Error('Invalid value of param "level": ' + level); }
 
-    return this.client.send('digitalWrite', {pin: pin, level: level});
+    return this.client.send('digitalWrite', { pin: pin, level: level });
   }
 
   /**
@@ -66,7 +66,7 @@ export default class DriverDefault extends DriverCore {
   digitalRead(pin) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
 
-    return this.client.ask('digitalRead', {pin: pin});
+    return this.client.send('digitalRead', { pin: pin });
   }
 
   // Analog I/O
@@ -78,7 +78,7 @@ export default class DriverDefault extends DriverCore {
   analogReference(value) {
     if (this._valuesAnalogReference.indexOf(mode) === -1) { throw new Error('Invalid value of param "value": ' + value); }
 
-    return this.client.send('analogReference', {value: value});
+    return this.client.send('analogReference', { value: value });
   }
 
   /**
@@ -89,7 +89,7 @@ export default class DriverDefault extends DriverCore {
   analogRead(pin) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
 
-    return this.client.ask('analogRead', {pin: pin});
+    return this.client.send('analogRead', { pin: pin });
   }
 
   /**
@@ -101,7 +101,7 @@ export default class DriverDefault extends DriverCore {
   analogWrite(pin, value) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
 
-    return this.client.send('analogWrite', {pin: pin, value: value});
+    return this.client.send('analogWrite', { pin: pin, value: value });
   }
 
   // Advanced I/O
@@ -116,7 +116,7 @@ export default class DriverDefault extends DriverCore {
   tone(pin, frequency, duration) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
 
-    return this.client.send('tone', {pin: pin, frequency: frequency, duration: duration});
+    return this.client.send('tone', { pin: pin, frequency: frequency, duration: duration });
   }
 
   /**
@@ -127,14 +127,14 @@ export default class DriverDefault extends DriverCore {
   noTone(pin) {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
 
-    return this.client.send('noTone', {pin: pin});
+    return this.client.send('noTone', { pin: pin });
   }
 
   /**
   * Shifts out a byte of data one bit at a time.
   * @param  {integer} dataPin
   * @param  {integer} clockPin
-  * @param  {[MSBFIRST, LSBFIRST]} bitOrder
+  * @param  {MSBFIRST|LSBFIRST} bitOrder
   * @param  {byte} value
   * @return {void}
   */
@@ -143,14 +143,14 @@ export default class DriverDefault extends DriverCore {
     if (typeof clockPin !== 'number') { throw new TypeError('The param "clockPin" must be a number'); }
     if (this._valuesBitOrder.indexOf(bitOrder) === -1) { throw new Error('Invalid value of param "bitOrder": ' + bitOrder); }
 
-    return this.client.send('shiftOut', {dataPin: dataPin, clockPin: clockPin, bitOrder: bitOrder, value: value});
+    return this.client.send('shiftOut', { dataPin: dataPin, clockPin: clockPin, bitOrder: bitOrder, value: value });
   }
 
   /**
   * Shifts in a byte of data one bit at a time.
   * @param  {integer} dataPin
   * @param  {integer} clockPin
-  * @param  {[MSBFIRST, LSBFIRST]} bitOrder
+  * @param  {MSBFIRST|LSBFIRST} bitOrder
   * @return {Promise}
   */
   shiftIn(dataPin, clockPin, bitOrder) {
@@ -158,13 +158,13 @@ export default class DriverDefault extends DriverCore {
     if (typeof clockPin !== 'number') { throw new TypeError('The param "clockPin" must be a number'); }
     if (this._valuesBitOrder.indexOf(bitOrder) === -1) { throw new Error('Invalid value of param "bitOrder": ' + bitOrder); }
 
-    return this.client.ask('shiftIn', {dataPin: dataPin, clockPin: clockPin, bitOrder: bitOrder});
+    return this.client.send('shiftIn', { dataPin: dataPin, clockPin: clockPin, bitOrder: bitOrder });
   }
 
   /**
   * Reads a pulse (either HIGH or LOW) on a pin.
   * @param  {integer} pin
-  * @param  {[HIGH, LOW]} value
+  * @param  {HIGH|LOW} value
   * @param  {long} [timeout]     the number of microseconds to wait for the pulse to be completed
   * @return {Promise}
   */
@@ -172,8 +172,6 @@ export default class DriverDefault extends DriverCore {
     if (typeof pin !== 'number') { throw new TypeError('The param "pin" must be a number'); }
     if (this._valuesDigitalLevel.indexOf(value) === -1) { throw new Error('Invalid value of param "value": ' + value); }
 
-    return this.client.ask('pulseIn', {pin: pin, value: value, timeout: timeout});
-
-    return d.promise;
+    return this.client.send('pulseIn', { pin: pin, value: value, timeout: timeout });
   }
 }
