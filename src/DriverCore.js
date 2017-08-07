@@ -1,6 +1,6 @@
-import {EventEmitter} from 'events';
+const EventEmitter = require('events');
 
-export default class DriverCore extends EventEmitter {
+class DriverCore extends EventEmitter {
   /**
   * Constructor
   * @param  {string} IP
@@ -18,6 +18,8 @@ export default class DriverCore extends EventEmitter {
     this._client.on('*', (topic, data) => {
       this.emit(topic, data);
     });
+
+    this.state = {};
   }
 
   /**
@@ -44,3 +46,5 @@ export default class DriverCore extends EventEmitter {
     return this._version;
   }
 }
+
+module.exports = DriverCore;

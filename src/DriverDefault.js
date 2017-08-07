@@ -1,19 +1,19 @@
-import DriverCore from './DriverCore';
+const DriverCore     = require('./DriverCore');
 
-export const INPUT          = 'INPUT';
-export const OUTPUT         = 'OUTPUT';
-// export const INPUT_PULLUP   = 'INPUT_PULLUP';
-export const HIGH           = '1';
-export const LOW            = '0';
-export const CONNECTED      = 'CONNECTED';
-export const DISCONNECTED   = 'DISCONNECTED';
-export const DEFAULT        = 'DEFAULT';
-export const EXTERNAL       = 'EXTERNAL';
-export const INTERNAL       = 'INTERNAL';
-export const MSBFIRST       = 'MSBFIRST';
-export const LSBFIRST       = 'LSBFIRST';
+// const INPUT_PULLUP   = 'INPUT_PULLUP';
+const INPUT          = 'INPUT';
+const OUTPUT         = 'OUTPUT';
+const HIGH           = '1';
+const LOW            = '0';
+const CONNECTED      = 'CONNECTED';
+const DISCONNECTED   = 'DISCONNECTED';
+const DEFAULT        = 'DEFAULT';
+const EXTERNAL       = 'EXTERNAL';
+const INTERNAL       = 'INTERNAL';
+const MSBFIRST       = 'MSBFIRST';
+const LSBFIRST       = 'LSBFIRST';
 
-export default class DriverDefault extends DriverCore {
+class DriverDefault extends DriverCore {
   /**
   * Constructor
   * @param  {string} id
@@ -175,3 +175,16 @@ export default class DriverDefault extends DriverCore {
     return this.client.send('pulseIn', { pin: pin, value: value, timeout: timeout });
   }
 }
+
+module.exports.INPUT         = INPUT;
+module.exports.OUTPUT        = OUTPUT;
+module.exports.HIGH          = HIGH;
+module.exports.LOW           = LOW;
+module.exports.CONNECTED     = CONNECTED;
+module.exports.DISCONNECTED  = DISCONNECTED;
+module.exports.DEFAULT       = DEFAULT;
+module.exports.EXTERNAL      = EXTERNAL;
+module.exports.INTERNAL      = INTERNAL;
+module.exports.MSBFIRST      = MSBFIRST;
+module.exports.LSBFIRST      = LSBFIRST;
+module.exports.DriverDefault = DriverDefault;
