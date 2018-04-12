@@ -1,4 +1,5 @@
-function MakeObservable(obj, fn, path = '', triggerOnSetup = false) {
+function MakeObservable(obj, fn, triggerOnSetup = false, path = '') {
+  console.log('MakeObservable');
   let observable  = {};
   let _observable = {};
 
@@ -10,7 +11,7 @@ function MakeObservable(obj, fn, path = '', triggerOnSetup = false) {
     _observable[prop] = obj[prop];
 
     if (typeof obj[prop] == 'object') {
-      _observable[prop] = MakeObservable(obj[prop], fn, completeProp);
+      _observable[prop] = MakeObservable(obj[prop], fn, triggerOnSetup, completeProp);
     }
 
     Object.defineProperty(observable, prop, {
@@ -18,11 +19,12 @@ function MakeObservable(obj, fn, path = '', triggerOnSetup = false) {
         return _observable[prop];
       },
       set: function(newVal) {
+        console.log('set', newVal);
         if (_observable[prop] != newVal) {
           let oldVal = _observable[prop];
 
           if (typeof newVal == 'object') {
-            newVal = MakeObservable(newVal, fn, completeProp);
+            newVal = MakeObservable(newVal, fn, triggerOnSetup, completeProp);
           }
 
           _observable[prop] = newVal;
@@ -104,4 +106,4 @@ function MakeObservable(obj, fn, path = '', triggerOnSetup = false) {
   return observable;
 }
 
-exports.MakeObservable = MakeObservable;
+module.exports = MakeObservable;
