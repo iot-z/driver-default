@@ -1,7 +1,8 @@
-export default {
+module.exports = {
   wait: (delay, fn) => {
     return setTimeout(fn, delay);
   },
+
   repeat: function(times, delay, fn, wait) {
     let counter, id;
     let repeater = () => {
@@ -17,6 +18,7 @@ export default {
 
     return id;
   },
+
   loop: (delay, fn, wait) => {
     if (!wait) {
       fn();
@@ -24,8 +26,8 @@ export default {
 
     return setInterval(fn, delay);
   },
+
   stop: (id) => {
     clearTimeout(id);
-    clearInterval(id);
   }
 };
