@@ -10,10 +10,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IoT-Z/iotz-driver-default.git"
+    "url": "git+https://github.com/iot-z/driver-default.git"
   },
   "bugs": {
-    "url": "https://github.com/IoT-Z/iotz-driver-default/issues"
+    "url": "https://github.com/iot-z/driver-default/issues"
   },
-  "homepage": "https://github.com/IoT-Z/iotz-driver-default#readme"
+  "homepage": "https://github.com/iot-z/driver-default#readme"
 }

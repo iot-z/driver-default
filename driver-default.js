@@ -1,4 +1,4 @@
-const { DriverArduino, HIGH, LOW, INPUT, OUTPUT } = require('./driver-core/driver-arduino');
+const { Driver: DriverArduino, HIGH, LOW, INPUT, OUTPUT } = require('@iotz/driver-core/driver-arduino');
 const pins = require('./utils/node-mcu.js');
 
 class DriverDefault extends DriverArduino {
@@ -32,4 +32,4 @@ class DriverDefault extends DriverArduino {
   }
 }
 
-module.exports.Driver = Driver;
+module.exports.Driver = DriverDefault;
